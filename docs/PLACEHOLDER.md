@@ -1,11 +1,13 @@
 # docs
 
-This folder held PM how-to guides for using the commands and workflows in this system.
+This folder holds PM how-to guides for using the commands and workflows in this system. Add a guide here whenever a command has non-obvious usage or when you want to document a workflow for yourself or a team member.
 
-## Contents (not included -- company confidential)
+## What belongs here
 
-- **enrich-fr-pm-guide.md** -- a step-by-step guide for using the `/enrich-fr` command with Freshdesk tickets; covered how to structure the feature request catalog, when to use catalog mode vs chat mode, and how to interpret the enrichment output for roadmap decisions
+- **Command guides** -- step-by-step instructions for using specific commands with your setup (e.g. how to structure your feature request catalog for `/enrich-fr`, when to use catalog mode vs chat mode)
+- **Workflow guides** -- end-to-end process docs for recurring PM workflows (e.g. "how I do a monthly FR triage cycle")
+- **Onboarding notes** -- anything you learn about the system that is not obvious from the command files themselves
 
-## How it was used
+## Getting started
 
-These guides served as onboarding and reference material -- both for personal use and for sharing with team members who might adopt parts of the system.
+You do not need anything here to start. Add guides as you discover that a command needs more explanation, or when you want to share a workflow with a team member.

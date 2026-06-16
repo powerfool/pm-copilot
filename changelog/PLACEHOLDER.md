@@ -1,15 +1,18 @@
 # Changelog
 
-This folder held the integrations team's release history.
+This folder tracks your team's release history. Keep it updated as you ship.
 
-## Contents (not included -- company confidential)
+## What belongs here
 
-- **INTG Changelog.md** -- running log of integration releases, organized by date; included both customer-facing summaries and internal notes with Jira ticket references
-- **INTG Changelog (Jira).csv** -- full export from Jira of all shipped tickets in the integrations project, used for retrospectives, roadmap reviews, and pattern analysis
+- **Changelog.md** -- a running log of releases, organized by date; include both customer-facing summaries and internal notes with Jira ticket references
+- **Changelog export (CSV)** -- a periodic Jira export of all shipped tickets in your project, useful for retrospectives, roadmap reviews, and pattern analysis
 
-## How it was used
+## How to use it
 
-The changelog was used as context when:
-- Answering "when did we ship X?" or "what changed in the HubSpot integration recently?"
+@-mention the changelog when you need historical context in a session:
+
+- "When did we ship X?" or "What changed in the HubSpot integration recently?"
 - Preparing roadmap review presentations
-- Grounding the AI agent in what has already been built before discussing new feature ideas
+- Grounding the agent in what has already been built before discussing new feature ideas
+
+A simple running markdown file updated after each release is enough to start. The CSV export adds depth for analysis tasks.

@@ -1,17 +1,24 @@
 # James Bot
 
-This folder held the competitive intelligence system -- a set of prompts and a curated source registry used to run regular integration intel briefs.
+This folder runs your competitive intelligence system. Set it up once, then run it on a regular cadence to stay ahead of what competitors are shipping.
 
-## Contents (not included -- company confidential)
+## What belongs here
 
-- **integration-intel-brief-prompt.md** -- the prompt used to generate periodic competitive integration briefs; structured to cover new integrations, partnership announcements, API changes, and strategic signals from competitors
-- **integration-intel-source-registry.md** -- the mandatory source list for intel monitoring: competitor changelog pages, product blogs, release notes, app marketplace listings, and community forums; updated as new sources were identified
+- **intel-brief-prompt.md** -- the prompt used to generate periodic competitive integration briefs; structure it to cover new integrations, partnership announcements, API changes, and strategic signals from competitors
+- **intel-source-registry.md** -- the curated list of sources to monitor: competitor changelog pages, product blogs, release notes, app marketplace listings, and community forums; update it as you discover new sources
 
-## How it was used
+## How to use it
 
-"James Bot" was a recurring workflow: on a cadence (weekly or bi-weekly), the source registry was fed to the AI agent along with the brief prompt to produce a competitive intel digest. The output informed:
-- Roadmap prioritization discussions
-- Responses to customer questions like "does [competitor] support X?"
-- Awareness of feature parity gaps before they became a retention issue
+On a weekly or bi-weekly cadence, feed the source registry to the agent along with the brief prompt to produce a competitive intel digest. Use the output to:
 
-The name "James" was a reference to the idea of having a dedicated competitive intelligence analyst -- James being the AI-powered version.
+- Inform roadmap prioritization discussions
+- Answer customer questions like "does [competitor] support X?"
+- Spot feature parity gaps before they become a retention issue
+
+## Getting started
+
+1. Create `intel-source-registry.md` -- list the 5-10 most important competitor pages to watch (changelog, blog, integrations marketplace)
+2. Create `intel-brief-prompt.md` -- define the output format you want (e.g. new integrations, removed features, pricing changes, strategic signals)
+3. Run a session: "@James Bot/intel-source-registry.md -- generate this week's integration intel brief using @James Bot/intel-brief-prompt.md"
+
+The name "James" is a reference to having a dedicated competitive intelligence analyst -- this folder is the AI-powered version.
