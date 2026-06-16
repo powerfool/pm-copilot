@@ -1,78 +1,148 @@
 # PM Copilot
 
-A personal productivity system built on top of [Cursor](https://cursor.com) to manage my work as a Product Manager on an Integrations team. It combines AI personas, slash commands, reusable rules, and scripts into a cohesive daily workflow.
+This is my personal PM productivity system, built on [Cursor](https://cursor.com). If you are a Cursor agent starting with me in a new role, this repo is your onboarding document. Read it carefully -- it tells you who I am, how I work, and how to set yourself up to be useful from day one.
 
-## What this is
-
-Over time I found myself repeating the same PM workflows: triaging support tickets, enriching feature requests, triage from Slack threads, analyzing product behavior from code. This repo captures the automation layer I built to do those faster and better.
-
-It is not a generic framework -- it was built for my specific context. But the patterns, commands, and rules are all reusable and the structure can be adapted to any PM working in a product+engineering environment.
+If you are a human reading this on GitHub: this repo shows the system I have built and carry from role to role. It is less a portfolio and more an operating manual.
 
 ---
 
-## System components
+## Who I am
 
-### `cursor/rules/`
-Always-on Cursor rules that shape how the AI agent behaves in every session.
-
-| Rule | Purpose |
-|------|---------|
-| `pm-copilot.mdc` | PM coaching persona: goals, coaching style, bias to action |
-| `jira-mcp-fast-path.mdc` | Default Jira MCP configuration for fast ticket creation and retrieval |
-| `slack-url-thread-and-verify.mdc` | Fetch a Slack thread, summarize it, then verify claims in the codebase |
-| `git-repos-under-src.mdc` | Workspace layout: git repos live under `src/`, not the root |
-| `no-code-without-ask.mdc` | Never change code unless explicitly asked -- investigation only by default |
-| `no-curly-quotes.mdc` | ASCII punctuation only to prevent tool-call failures |
-
-### `cursor/commands/`
-Slash commands invoked on demand for specific PM workflows.
-
-| Command | What it does |
-|---------|-------------|
-| `enrich-fr.md` | Pull a Freshdesk ticket and enrich a feature request entry with real customer evidence |
-| `slack-to-jira.md` | Take a Slack thread URL, triage the issue, draft a Jira ticket |
-| `jira-url-codebase-triage.md` | Take a Jira URL, trace the related behavior in the codebase (read-only) |
-| `document-feature-behavior.md` | Generate a plain-language feature behavior doc from code |
-| `debug-webhook-ticket.md` | Debug a webhook or automation issue from a Freshdesk ticket |
-| `school-automation-analysis.md` | Analyze a school's automation JSON export to understand their setup |
-| `extract-automation-use-cases.md` | Extract automation use cases from a customer analysis into a research catalog |
-| `thought-partner.md` | Creative coaching session -- challenge assumptions, find paradoxes, generate options |
-
-### `skills/freshdesk-ticket/`
-An agent skill that auto-triggers on any Freshdesk ticket URL. Fetches the full ticket and conversation thread, summarizes the issue, and optionally verifies product behavior against the codebase.
-
-### `scripts/`
-Python tooling for research pipelines.
-
-| Script | What it does |
-|--------|-------------|
-| `productboard_fetch_notes.py` | Fetches Productboard notes to CSV with Freshdesk URL extraction for FR research |
-| `.env.example` | Template for required API credentials |
+Dimitris Tzortzis -- Senior Product Manager specializing in integrations and platform extensibility. I work at the intersection of product, engineering, and customer success. I move fast, make decisions with incomplete information, and expect my tools to do the same.
 
 ---
 
-## Knowledge base structure
+## How I work with AI agents
 
-The repo preserves the folder structure of the knowledge base I maintained alongside this tooling. The actual documents are not included (company-confidential), but placeholders describe what each folder held.
+I use Cursor as a thinking partner, not a writing assistant. That means:
 
-- `Company Knowledge/` -- strategy docs, segment analyses, feature request catalogs, competitive research
-- `changelog/` -- integration team release notes
-- `ProductKnowledge/` -- code-derived product behavior references for LLM grounding
-- `James Bot/` -- competitive intelligence prompts and source registry
-- `docs/` -- PM how-to guides for using the commands
-
----
-
-## How to adapt this
-
-1. Copy `cursor/rules/` into your workspace's `.cursor/rules/` folder
-2. Copy `cursor/commands/` into `.cursor/commands/`
-3. Drop `skills/freshdesk-ticket/SKILL.md` into `~/.cursor/skills/freshdesk-ticket/`
-4. Update the placeholders in the rules (`[YourCompany]`, `your-company.atlassian.net`, etc.) to match your environment
-5. Run `scripts/productboard_fetch_notes.py` with your own API credentials (see `.env.example`)
+- **I investigate before I act.** When something is broken or unclear, I want root cause analysis grounded in the codebase or a real data source -- not guesses.
+- **I decide, you execute.** Never make code changes, file tickets, or send messages unless I have explicitly asked you to. Investigate and report; I will tell you what to do next.
+- **I work in context.** Every session I will load relevant documents (@-mention files in chat). Use them. Do not answer from memory when source material is available.
+- **I bias to action.** Push back on analysis paralysis. If I am overthinking, say so. Help me make a decision with what we have and move.
+- **I want honesty.** Tell me what you actually think. If my plan has a hole, name it. I do not need encouragement -- I need clarity.
 
 ---
 
-## Author
+## System architecture
 
-Dimitris Tzortzis -- Senior Product Manager, Integrations
+The system has four layers. Set them up in this order when starting in a new role.
+
+### Layer 1 -- Persona (`cursor/rules/pm-copilot.mdc`)
+
+The always-on coaching rule. It defines my role, my goals, and how I expect you to behave as a coach and advisor. Adapt the `[YourCompany]` and company description placeholders before loading it.
+
+This rule is always active. It shapes every session.
+
+### Layer 2 -- Always-on rules (`cursor/rules/`)
+
+Five additional rules that govern agent behavior in every session:
+
+| Rule | What it enforces |
+|------|-----------------|
+| `jira-mcp-fast-path.mdc` | Skip Jira tool discovery; use the known MCP path and project key directly |
+| `slack-url-thread-and-verify.mdc` | When I paste a Slack URL: fetch the thread, then verify claims in the codebase |
+| `git-repos-under-src.mdc` | Workspace root is not a git repo; code lives under `src/` subfolders |
+| `no-code-without-ask.mdc` | Never edit code unless I explicitly ask -- investigate only by default |
+| `no-curly-quotes.mdc` | ASCII punctuation only -- curly quotes break StrReplace tool calls |
+
+Fill in the placeholders (`your-company.atlassian.net`, `<YOUR_CLOUD_ID>`, `src/<your-repo>/`, etc.) for your environment.
+
+### Layer 3 -- On-demand commands (`cursor/commands/`)
+
+Slash commands invoked when I need a specific workflow. They are self-contained -- each file describes exactly what to do when I invoke it.
+
+| Command | When I use it |
+|---------|--------------|
+| `/enrich-fr` | I paste a feature request and want real customer evidence pulled from the support ticket |
+| `/slack-to-jira` | I paste a Slack thread URL and want triage + optional Jira ticket |
+| `/jira-url-codebase-triage` | I paste a Jira URL and want the behavior traced in the codebase (read-only) |
+| `/document-feature-behavior` | I need a plain-language source-of-truth doc for a feature, written from the code |
+| `/debug-webhook-ticket` | I have a Freshdesk ticket about a broken webhook or automation and need a diagnosis |
+| `/school-automation-analysis` | I have a customer's automation JSON export and want a structured analysis |
+| `/extract-automation-use-cases` | I want use cases from an analysis added to a product research catalog |
+| `/thought-partner` | I want to think through a problem -- challenge my assumptions, find paradoxes |
+
+### Layer 4 -- Knowledge base
+
+Folders of context documents I load into sessions. They do not contain generic information -- they contain the specific company context (strategy, product behavior, feature requests, competitive research) that turns generic answers into grounded ones.
+
+See the `PLACEHOLDER.md` in each folder for what belongs there and how it is used. Populate these as you build context in the new role.
+
+---
+
+## Setting up in a new role
+
+### 1. Clone this repo
+```bash
+git clone https://github.com/powerfool/pm-copilot
+```
+
+### 2. Copy rules into your workspace
+```bash
+cp cursor/rules/*.mdc <your-workspace>/.cursor/rules/
+```
+
+### 3. Copy commands into your workspace
+```bash
+cp cursor/commands/*.md <your-workspace>/.cursor/commands/
+```
+
+### 4. Install the Freshdesk skill
+```bash
+mkdir -p ~/.cursor/skills/freshdesk-ticket
+cp skills/freshdesk-ticket/SKILL.md ~/.cursor/skills/freshdesk-ticket/
+```
+
+### 5. Fill in the placeholders
+
+In every rule and command, replace:
+
+| Placeholder | Replace with |
+|------------|-------------|
+| `[YourCompany]` | Your company name |
+| `your-company.atlassian.net` | Your Jira site |
+| `<YOUR_CLOUD_ID>` | Your Atlassian cloud ID (from the Jira URL) |
+| `<YOUR_PROJECT_KEY>` | Your default Jira project key |
+| `your-company.slack.com` | Your Slack domain |
+| `your-company.freshdesk.com` | Your Freshdesk domain |
+| `<YOUR_WORKSPACE_PATH>` | Absolute path to your workspace root |
+| `src/<your-repo>/` | Your actual repo names under `src/` |
+
+### 6. Set up API credentials
+```bash
+cp scripts/.env.example scripts/.env
+# edit scripts/.env with your Freshdesk and Productboard tokens
+```
+
+### 7. Start populating the knowledge base
+
+Create the equivalent of `Company Knowledge/`, `ProductKnowledge/`, etc. for your new context. The more you load in, the more grounded the sessions become. Use the `PLACEHOLDER.md` files in each folder as a guide for what to create.
+
+---
+
+## Scripts
+
+`scripts/productboard_fetch_notes.py` -- fetches Productboard notes to CSV, extracts linked Freshdesk ticket URLs, and strips HTML. Used to build feature request catalogs for roadmap research.
+
+```bash
+cd scripts
+pip install -r requirements.txt
+python productboard_fetch_notes.py --output notes.csv
+```
+
+---
+
+## Philosophy
+
+A few principles baked into the system design:
+
+- **Source of truth over memory.** Always verify claims against the codebase, a ticket, or a document. Never rely on what the agent recalls from training.
+- **PM-readable output by default.** Technical depth on request; plain-language first.
+- **One question at a time.** When I need to make a decision, drive a dialogue -- do not dump all options at once.
+- **Bias to shipping.** When I am stuck, help me identify the smallest thing I can do to move forward. Perfect is the enemy of useful.
+- **Honest coaching over validation.** If my plan has a flaw, name it early. I would rather hear it from you than discover it in a stakeholder meeting.
+
+---
+
+*Built by Dimitris Tzortzis. Carried across roles.*
