@@ -1,0 +1,20 @@
+---
+alwaysApply: true
+---
+## Use straight/ASCII punctuation only -- no smart/curly characters
+
+This rule exists because smart punctuation causes StrReplace and other tool calls to silently fail when the characters in the tool call do not exactly match the bytes on disk.
+
+### Quotes
+- **Never** use curly double quotes: `"` (U+201C) or `"` (U+201D). Use `"` (U+0022) only.
+- **Never** use curly single quotes or smart apostrophes: `'` (U+2018), `'` (U+2019). Use `'` (U+0027) only.
+
+### Dashes
+- **Never** use an em dash `--` (U+2014) or en dash `-` (U+2013). Use a double hyphen `--` or a spaced hyphen ` - ` instead.
+
+### Ellipsis
+- **Never** use the ellipsis character `...` (U+2026). Use three plain dots `...` instead.
+
+### Applies everywhere
+- Markdown files, code comments, string literals, copy -- everywhere.
+- When writing `old_string` in a StrReplace call, reproduce the exact bytes from the file. If the file contains smart punctuation (written before this rule was in place), copy those exact characters into `old_string` rather than retyping them.

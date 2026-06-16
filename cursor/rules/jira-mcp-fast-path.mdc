@@ -1,0 +1,35 @@
+---
+alwaysApply: true
+description: Use a fixed Jira MCP fast path to avoid repeated discovery.
+---
+
+# Jira MCP Fast Path
+
+Use this default flow for Jira requests to minimize repeated searching.
+
+## Default context
+
+- Jira site: `your-company.atlassian.net`
+- Cloud ID: `<YOUR_CLOUD_ID>`
+- Default project suggestion for integrations work: `<YOUR_PROJECT_KEY>` (confirm if user asks to create)
+
+## Tool path policy
+
+- Do not run broad tool discovery for Atlassian MCP on every Jira request.
+- Use the known tool descriptor path directly: `<YOUR_MCP_TOOLS_PATH>` (e.g. `~/.cursor/projects/.../mcps/plugin-atlassian-atlassian/tools/`).
+- Read only the specific tool schema needed before each call (required).
+- If a call fails due to auth or schema mismatch, then run discovery as fallback.
+
+## Jira execution defaults
+
+- For read-only Jira requests, use direct MCP calls after reading the relevant schema.
+- For creation/update requests, confirm intent and key metadata first:
+  - project key
+  - issue type
+  - summary
+  - parent/epic if applicable
+- Keep ticket content PM-level: define required behavior and acceptance criteria, avoid implementation details.
+- Story template usage:
+  - Use the PM story template by default only when no different content has been discussed and agreed.
+  - If custom content is discussed and agreed, that agreed content overrides the template.
+  - Do not force bug/task/support-issue tickets to follow the story template.

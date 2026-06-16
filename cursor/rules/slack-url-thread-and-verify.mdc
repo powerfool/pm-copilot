@@ -1,0 +1,29 @@
+---
+alwaysApply: true
+description: When the user shares a Slack conversation link, fetch the full thread via Slack MCP and verify technical claims in the codebase.
+---
+
+## Slack conversation links
+
+When the user pastes or references a **Slack thread URL** (e.g. `https://your-company.slack.com/archives/{CHANNEL_ID}/p{TIMESTAMP}`), treat that as mandatory context for the task.
+
+### 1. Fetch the thread (Slack MCP)
+
+- **Before calling Slack tools**, read the tool descriptor schema under `.cursor/projects/.../mcps/user-slack/tools/` (or the active MCP path) for the correct parameters.
+- Use **`conversations_replies`** on the **user-slack** MCP server with:
+  - `channel_id`: from the URL path segment after `/archives/` (e.g. `C01B64CGVF1`).
+  - `thread_ts`: convert the `p{...}` segment to Slack `ts` form: take the digits after `p`, use the **first 10 digits as Unix seconds**, then a **dot**, then the **remaining digits** (typically 6), e.g. `p1773927984807579` becomes `1773927984.807579`. If the message is the root of a thread, that `ts` is the thread parent.
+- Paginate with `cursor` if the tool response indicates more messages.
+- Summarize the thread: who reported what, product vs technical questions, and any decisions or open questions.
+
+### 2. Verify in the codebase
+
+- **Do not rely on the Slack thread alone** for implementation details, API scopes, behavior, or root cause.
+- **Search the relevant repo(s) under `src/`** (see `git-repos-under-src` rule). Use `grep`, semantic search, or file reads as appropriate.
+- State what you **verified in code** vs what is **only from Slack or interpretation**.
+- If the user asked for customer-facing or PM wording, still **ground factual claims** (permissions, URLs, feature behavior) in the codebase or official docs when the topic is product/integration technical.
+
+### 3. Other constraints
+
+- Follow **`no-code-without-ask`**: investigation and reporting are fine; do not change code unless the user explicitly asks.
+- Use **straight ASCII punctuation** per `no-curly-quotes`.

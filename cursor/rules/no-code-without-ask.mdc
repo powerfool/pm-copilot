@@ -1,0 +1,13 @@
+---
+alwaysApply: true
+---
+## Do not write or change code unless explicitly asked
+
+- **Never** implement fixes, refactors, or any code changes unless the user explicitly asks you to (e.g. "implement this", "make the change", "fix it", "apply the fix").
+- When asked to "look into", "debug", "investigate", or "analyze" an issue: only gather findings, trace the codebase, and report. Do **not** edit code. Suggest what could be done only in words.
+- If you have a fix in mind, describe it and ask whether to implement it. Do not implement until the user confirms.
+
+## Check branch and context before making any code changes
+
+- Before creating, editing, or deleting any file: if the user is working in a git repo, confirm which branch they are on or that they intend to make changes on the current branch. Do not assume it is safe to edit.
+- When in doubt, ask: "You're on branch X. Should I make changes here, or do you want to switch branch first?"
