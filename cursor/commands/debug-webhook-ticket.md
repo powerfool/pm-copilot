@@ -40,17 +40,15 @@ Parse both responses to get:
 From the ticket description and thread, determine:
 
 1. **What the customer says they receive** -- Exact payload shape or fields they quoted (e.g. relative file path, missing keys).
-2. **What they expected** -- From the automation UI preview, help docs, or API docs if they mentioned it.
+2. **What they expected** 
 3. **What actually happens** -- If support or the customer confirmed something (e.g. "that URL returns 404", "we don't support that").
-4. **Compare to internal docs** -- If the issue is about webhook payload, read `webhook-payload-by-trigger.md` and check:
-   - Does the documented payload for that trigger include the field in question?
-   - Is the field documented as a relative path, a full URL, or not documented at all?
+4. **Compare to internal docs** 
 5. **Support accuracy** -- Did support give incorrect guidance (e.g. wrong URL pattern that 404s)? Note it.
 
 ### Step 4: Report (no code changes)
 Provide a short analysis that includes:
 
-- **Trigger/context** -- Which automation trigger or flow the ticket is about (e.g. assessment-submitted, file upload).
+- **Trigger/context** 
 - **Payload issue (if any)** -- Whether there is a real payload/doc bug: e.g. we send a relative path with no way to resolve it, we document X but send Y, or we don't document file fields at all.
 - **Support/UX notes** -- Wrong workaround given, or doc gap that could be fixed in help center or in-app copy.
 - **Product conclusion** -- One or two sentences: is this a bug, a doc gap, or a feature request (e.g. "need downloadable file URL in webhook")?

@@ -59,8 +59,6 @@ Slash commands invoked when I need a specific workflow. They are self-contained 
 | `/jira-url-codebase-triage` | I paste a Jira URL and want the behavior traced in the codebase (read-only) |
 | `/document-feature-behavior` | I need a plain-language source-of-truth doc for a feature, written from the code |
 | `/debug-webhook-ticket` | I have a Freshdesk ticket about a broken webhook or automation and need a diagnosis |
-| `/school-automation-analysis` | I have a customer's automation JSON export and want a structured analysis |
-| `/extract-automation-use-cases` | I want use cases from an analysis added to a product research catalog |
 | `/thought-partner` | I want to think through a problem -- challenge my assumptions, find paradoxes |
 
 ### Layer 4 -- Knowledge base

@@ -96,7 +96,7 @@ In Mode B, output the same structured content in the assistant reply; do not app
 1. **Preserve exact quotes** -- Use the customer's actual words. Don't paraphrase their quotes.
 2. **Be concise** -- The enrichment should add signal, not noise. 3-8 lines max per FR.
 3. **Flag mismatches** -- If the ticket conversation doesn't match the FR summary, say so clearly: `> **Relevance note:** The ticket is actually about [X], not [Y as summarized].`
-4. **Flag irrelevant tickets** -- If the customer's request clearly doesn't belong to the Integrations Team, note: `> **Relevance note:** This ticket appears unrelated to integrations. Consider removing from catalog.`
+4. **Flag irrelevant tickets** -- If the customer's request clearly doesn't belong to your team, note: `> **Relevance note:** This ticket appears unrelated to your team's scope. Consider removing from catalog.`
 5. **Multiple tickets** -- Process them one at a time. In Mode A, update the file after each ticket so progress isn't lost.
 6. **Don't alter existing FR content (Mode A)** -- Only ADD the enrichment block below. Never modify the original FR text, metadata, or links.
 7. **Skip boilerplate** -- Ignore agent signatures, footers, "Got Questions?" blocks, and portal links when extracting conversation content.
