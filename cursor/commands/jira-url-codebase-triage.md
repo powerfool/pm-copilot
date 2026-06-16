@@ -44,7 +44,7 @@ If it helps triage duplicates or engineering ownership, run **one or two** narro
 
 ## Step 3: Search the codebase (read-only)
 
-1. **Scope:** Product code lives under `src/` (e.g. `src/<frontend-repo>/`, `src/<backend-repo>/`). Prefer searching there; avoid treating the workspace root as a single git repo.
+1. **Scope:** Product code lives under `/` (e.g. `/<frontend-repo>/`, `/<backend-repo>/`). Prefer searching there; avoid treating the workspace root as a single git repo.
 2. Use **semantic search** and **exact-text search** with terms from the **description and comments**: feature names, UI labels, error strings, integration names, webhook trigger names, API paths, etc.
 3. Goal: answer **whether** the codebase contains logic that could explain the behavior (expected limitation, known path, feature flag, etc.), **not** to design a fix.
 4. **Do not** modify files, open PRs, or paste large code blocks unless a short snippet helps explain behavior to a PM.
@@ -58,7 +58,7 @@ Reply with:
 3. **Comments / thread** -- Short bullets if any comments exist (internal findings vs customer reply). Align or contrast with the description.
 4. **Codebase signal** -- One of: **Likely product behavior** (with brief why), **Unclear / needs engineering** (what is missing), or **No strong match** (what you searched for). Include **file paths only** as pointers, not implementation tutorials. Incorporate **comment-derived** error strings or hypotheses when relevant.
 5. **Confidence** -- High / medium / low, and one sentence why.
-6. **Suggested next step** -- e.g. escalate to Integrations, check docs, confirm reproduction with customer, link existing issue -- **no code**.
+6. **Suggested next step** -- e.g. escalate to the team, check docs, confirm reproduction with customer, link existing issue -- **no code**.
 
 ## Guardrails
 

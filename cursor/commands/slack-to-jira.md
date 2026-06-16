@@ -32,7 +32,7 @@ When Dimitris pastes a Slack conversation URL:
 
 ### 2. Root cause analysis (codebase)
 
-- Search relevant repos under `src/` (see workspace git layout).
+- Search relevant repos under `/` (see workspace git layout).
 - Compare implementations when relevant (e.g. v3 vs v4).
 - Cite file paths (and line numbers when helpful) for engineering follow-up, but **keep the first response PM-readable** -- no walls of code unless Dimitris asks for technical depth.
 
@@ -56,7 +56,7 @@ When Dimitris pastes a Slack conversation URL:
 
 ## Additional context
 
-- **Integrations project (suggested default):** `https://your-company.atlassian.net/jira/software/c/projects/<YOUR_PROJECT_KEY>/`
+- **JIRA project (suggested default):** `https://your-company.atlassian.net/jira/software/c/projects/<YOUR_PROJECT_KEY>/`
 - **cloudId:** `<YOUR_CLOUD_ID>`
 - Prioritize customer impact and clear next steps for Dimitris, Support, and Engineering.
 

@@ -6,12 +6,6 @@ If you are a human reading this on GitHub: this repo shows the system I have bui
 
 ---
 
-## Who I am
-
-Dimitris Tzortzis -- Senior Product Manager specializing in integrations and platform extensibility. I work at the intersection of product, engineering, and customer success. I move fast, make decisions with incomplete information, and expect my tools to do the same.
-
----
-
 ## How I work with AI agents
 
 I use Cursor as a thinking partner, not a writing assistant. That means:
@@ -36,13 +30,11 @@ This rule is always active. It shapes every session.
 
 ### Layer 2 -- Always-on rules (`cursor/rules/`)
 
-Five additional rules that govern agent behavior in every session:
+Three additional rules that govern agent behavior in every session:
 
 | Rule | What it enforces |
 |------|-----------------|
-| `jira-mcp-fast-path.mdc` | Skip Jira tool discovery; use the known MCP path and project key directly |
 | `slack-url-thread-and-verify.mdc` | When I paste a Slack URL: fetch the thread, then verify claims in the codebase |
-| `git-repos-under-src.mdc` | Workspace root is not a git repo; code lives under `src/` subfolders |
 | `no-code-without-ask.mdc` | Never edit code unless I explicitly ask -- investigate only by default |
 | `no-curly-quotes.mdc` | ASCII punctuation only -- curly quotes break StrReplace tool calls |
 
@@ -58,8 +50,6 @@ Slash commands invoked when I need a specific workflow. They are self-contained 
 | `/slack-to-jira` | I paste a Slack thread URL and want triage + optional Jira ticket |
 | `/jira-url-codebase-triage` | I paste a Jira URL and want the behavior traced in the codebase (read-only) |
 | `/document-feature-behavior` | I need a plain-language source-of-truth doc for a feature, written from the code |
-| `/debug-webhook-ticket` | I have a Freshdesk ticket about a broken webhook or automation and need a diagnosis |
-| `/thought-partner` | I want to think through a problem -- challenge my assumptions, find paradoxes |
 
 ### Layer 4 -- Knowledge base
 
