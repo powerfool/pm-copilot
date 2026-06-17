@@ -1,8 +1,8 @@
 # PM Copilot
 
-This is my personal PM productivity system, built on [Cursor](https://cursor.com). If you are a Cursor agent starting with me in a new role, this repo is your onboarding document. Read it carefully -- it tells you who I am, how I work, and how to set yourself up to be useful from day one.
+This is my personal PM productivity system, built on [Cursor](https://cursor.com). If you are a coding agent, this repo is your onboarding document. Read it carefully -- it tells you who I am, how I work, and how to set yourself up to be useful from day one.
 
-If you are a human reading this on GitHub: this repo shows the system I have built and carry from role to role. It is less a portfolio and more an operating manual.
+If you are a human reading this on GitHub: this repo shows the system I have built to work with. It is less a portfolio and more an operating manual.
 
 ---
 
@@ -20,7 +20,7 @@ I use Cursor as a thinking partner, not a writing assistant. That means:
 
 ## System architecture
 
-The system has four layers. Set them up in this order when starting in a new role.
+The system has four layers. Set them up in this order.
 
 ### Layer 1 -- Persona (`cursor/rules/pm-copilot.mdc`)
 
@@ -55,11 +55,11 @@ Slash commands invoked when I need a specific workflow. They are self-contained 
 
 Folders of context documents I load into sessions. They do not contain generic information -- they contain the specific company context (strategy, product behavior, feature requests, competitive research) that turns generic answers into grounded ones.
 
-See the `PLACEHOLDER.md` in each folder for what belongs there and how it is used. Populate these as you build context in the new role.
+See the `PLACEHOLDER.md` in each folder for what belongs there and how it is used. Populate these as you build context.
 
 ---
 
-## Setting up in a new role
+## Setting up
 
 ### 1. Clone this repo
 ```bash
